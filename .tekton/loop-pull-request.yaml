@@ -20,7 +20,7 @@ metadata:
 spec:
   params:
   - name: dockerfile
-    value: Dockerfile
+    value: Dockerfile.ubi
   - name: git-url
     value: '{{repo_url}}'
   - name: image-expires-after
