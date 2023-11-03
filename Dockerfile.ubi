@@ -1,0 +1,21 @@
+FROM registry.access.redhat.com/ubi9 AS loop-build
+
+RUN yum -y install git rust cargo
+#RUN mkdir /tmp/loop && pushd /tmp/loop && git clone https://github.com/Miserlou/Loop && cd Loop && cargo install --path . --root /usr/
+COPY . /root/.
+RUN cd /root/ && cargo install --path . --root /usr/
+
+FROM registry.access.redhat.com/ubi9
+
+LABEL maintainer="jwboyer@redhat.com"
+
+LABEL com.redhat.component="loop"
+LABEL name="loop"
+LABEL version="main"
+
+LABEL summary="ubi9 with loop installed"
+LABEL description=""
+
+COPY --from=loop-build /usr/bin/loop /usr/bin/loop
+
+CMD ["/usr/bin/bash"]
