@@ -1,6 +1,6 @@
 # I use this Dockerfile to build linux Snap files from OSX.
 
-FROM ubuntu:xenial
+FROM ubuntu:noble
 
 # Enable multiverse as snapcraft cleanbuild does.
 RUN sed -i 's/ universe/ universe multiverse/' /etc/apt/sources.list
